@@ -1,0 +1,48 @@
+matriz = [
+    ['a','b','c','d'],
+    ['e','f','g','h'],
+    ['i','j','k','l'],
+    ['m','n','ñ','o'],
+    ['p','q','r','s'],
+    ['t','u','v','w'],
+    ['x','y','z',' ']
+]
+
+alfabeto = [letra for fila in matriz for letra in fila]
+
+def cifrado(texto, desplazamiento):
+    resultado = ""
+    for letra in texto.lower():
+        if letra in alfabeto:
+            i = alfabeto.index(letra)
+            resultado += alfabeto[(i + desplazamiento) % len(alfabeto)]
+        else:
+            resultado += letra
+    return resultado
+
+
+print("===== CIFRADO CESAR CON MATRIZ 7x4 =====")
+
+while True:
+    print("\n1. Cifrar mensaje")
+    print("2. Descifrar mensaje")
+    print("3. Salir")
+
+    opcion = input("Opción: ")
+
+    if opcion == "1":
+        mensaje = input("Ingresa el mensaje: ")
+        d = int(input("Desplazamiento: "))
+        print("Mensaje cifrado:", cifrado(mensaje, d))
+
+    elif opcion == "2":
+        mensaje = input("Ingresa el mensaje: ")
+        d = int(input("Desplazamiento: "))
+        print("Mensaje descifrado:", cifrado(mensaje, -d))
+
+    elif opcion == "3":
+        print("Programa finalizado")
+        break
+
+    else:
+        print("Opción inválida")
